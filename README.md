@@ -1,1 +1,1 @@
-# FedKG-platform-fontend
+# FedKG-platform-frontend
