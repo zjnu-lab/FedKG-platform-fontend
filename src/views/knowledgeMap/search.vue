@@ -28,10 +28,10 @@ export default {
     };
     const showData = reactive({
       list: [
-        { name: "eason", song: "热带雨林", key: 1 },
-        { name: "eason", song: "单车", key: 2 },
-        { name: "eason", song: "明年今日", key: 3 },
-        { name: "eason", song: "k歌之王", key: 4 },
+        { name: "数学", song: "三角函数", key: 1 },
+        { name: "数学", song: "勾股定理", key: 2 },
+        { name: "数学", song: "正弦", key: 3 },
+        { name: "数学", song: "余弦", key: 4 },
       ],
     });
     return {
