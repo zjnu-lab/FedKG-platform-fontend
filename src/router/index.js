@@ -83,6 +83,12 @@ const router = createRouter({
             component: () =>
                 import ("@/views/reality/modify.vue"),
         },
+        {
+            path: "/integral",
+            name: "integral",
+            component: () =>
+                import ("@/views/integral/integral.vue"),
+        },
     ],
 });
 
