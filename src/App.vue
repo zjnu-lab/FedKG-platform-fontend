@@ -21,14 +21,14 @@
                 <el-menu-item index="realityAdminList">待审实体(管理员)</el-menu-item>  
                 <el-menu-item index="realityPassList">已通过实体</el-menu-item>  
                 <el-menu-item index="realityWaitSyncList">等待同步实体</el-menu-item>  
-                <el-menu-item index="realityModify">修改实体</el-menu-item>  
-                <el-menu-item index="integral">积分</el-menu-item>  
+                <el-menu-item index="realityModify">修改实体</el-menu-item>
               </el-sub-menu>
               <el-sub-menu index="3">
                 <template #title>用户</template>
                 <el-menu-item index="login">登陆</el-menu-item>  
                 <el-menu-item index="signUp">注册用户</el-menu-item>  
-                <el-menu-item index="changePassword">修改密码</el-menu-item>  
+                <el-menu-item index="changePassword">修改密码</el-menu-item>
+                <el-menu-item index="integral">积分</el-menu-item>
               </el-sub-menu>
             </el-menu>
           </div>

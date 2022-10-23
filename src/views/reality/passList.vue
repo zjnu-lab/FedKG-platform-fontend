@@ -23,24 +23,40 @@
 </template>
 <script>
 import { reactive, ref } from "@vue/reactivity";
+
 export default {
   setup() {
-    const table = reactive({
+    let a = get_information
+    let table = reactive({
       tableData: [
-        { realityName: 'ame', status: '1' },
-        { realityName: 'topson', status: '2' },
-        { realityName: 'jerax', status: '3' },
-        { realityName: 'ceb', status: '4' },
-        { realityName: 'notail', status: '5' },
+        // { realityName: 'ame', status: '1' },
+        // { realityName: 'topson', status: '2' },
+        // { realityName: 'jerax', status: '3' },
+        // { realityName: 'ceb', status: '4' },
+        // { realityName: 'notail', status: '5' },
       ],
       pass(row) {
-        // 信息查看详情操作
+        alert(row.realityName)
       },
     })
+
+
+
     return {
       table
     };
   },
+  methods:{
+    get_information: function () {
+      // var this_ = this;
+      this.$api.getReality().then(function (result) {
+        return  result.data;
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+
+  }
 };
 </script>
 <style lang="scss" scoped>
