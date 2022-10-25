@@ -49,13 +49,14 @@ export default {
       // api.postUser(state.user.username, state.user.password).then((resonse) => {
       //   console.log(resonse)
       // })
-      api.postUser().then(response => {
+      api.postUser(state.user.username,state.user.password).then(response => {
         store.$patch({
-          userId: response.data[0].data.user_id,
-          userRole: response.data[0].data.user_role,
-          token: response.data[0].data.token
+          userId: response.data.data.user_id,
+          userRole: response.data.data.user_role,
+          token: response.data.data.token
         })
-        console.log(response)
+        // console.log(response)
+        // console.log(response.data.data.user_id)
       })
       localStorage.setItem('token', Date.now())
       console.log('登陆')
