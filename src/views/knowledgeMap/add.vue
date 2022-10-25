@@ -20,10 +20,11 @@
               <el-button>选择文件</el-button>
             </el-upload>
           </el-form-item>
-          <el-form-item label="实体文件描述">
-            <el-button @click="subtract">-</el-button>
+          <el-form-item label="实体描述">
+            <!-- <el-button @click="subtract">-</el-button>
             <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
-            <el-button @click="add">+</el-button>
+            <el-button @click="add">+</el-button> -->
+            <input placeholder="请输入描述" v-model="des">
           </el-form-item>
           <el-form-item style="margin-top: 50px;">
             <el-button type="primary" @click="handleSubmit">提交</el-button>
@@ -37,6 +38,7 @@
 import { reactive, ref } from "@vue/reactivity";
 export default {
   setup() {
+    const des = ref("")
     const formref = ref(null)
     const form = reactive({
       realityName: '',
@@ -53,6 +55,7 @@ export default {
       console.log(form)
     }
     return {
+      des,
       form,
       formref,
       subtract,
