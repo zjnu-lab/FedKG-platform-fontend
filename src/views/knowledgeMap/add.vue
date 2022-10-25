@@ -18,8 +18,8 @@
             </el-upload>
 <<<<<<< Updated upstream
           </el-form-item>
-          <el-form-item label="实体文件描述">
-            <el-button @click="subtract">-</el-button>
+          <el-form-item label="实体描述">
+            <!-- <el-button @click="subtract">-</el-button>
             <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
             <el-button @click="add">+</el-button>
 =======
@@ -29,7 +29,7 @@
             <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
             <el-button @click="add">+</el-button> -->
             <el-input placeholder="请输入描述" v-model="form.desc"></el-input>
->>>>>>> Stashed changes
+            >>>>>>> Stashed changes
           </el-form-item>
           <el-form-item style="margin-top: 50px">
             <el-button type="primary" @click="handleSubmit">提交</el-button>
@@ -83,6 +83,7 @@ export default {
       });
     };
     return {
+      des,
       form,
       formref,
       subtract,
@@ -95,6 +96,7 @@ export default {
 <style lang="scss" scoped>
 .box {
   box-shadow: 0 0 20px rgba(14, 14, 60, 0.08);
+
   &-header {
     text-align: start;
     border: 1px solid #ccc;
@@ -103,6 +105,7 @@ export default {
     padding: 10px 20px;
     font-size: 16px;
   }
+
   &-body {
     padding: 50px 100px;
     min-width: 400px;

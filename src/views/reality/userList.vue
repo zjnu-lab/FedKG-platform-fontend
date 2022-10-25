@@ -24,28 +24,32 @@
               <el-button size="small" @click="table.reback(row)">撤销</el-button>
             </template>
           </el-table-column>
-          <el-table-column>
-            <template v-slot="{row}">
-              <el-button size="small" @click="table.modify(row)">修改</el-button>
-            </template>
-          </el-table-column>
+          <!--          <el-table-column>-->
+          <!--            <template v-slot="{row}">-->
+          <!--              <el-button size="small" @click="table.modify(row)">修改</el-button>-->
+          <!--            </template>-->
+          <!--          </el-table-column>-->
         </el-table>
-        <el-pagination layout="prev, pager, next" :total="table.tableData.length" />
+        <el-pagination layout="prev, pager, next" :total="table.tableData.length"/>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { reactive, ref } from "@vue/reactivity";
+import {reactive, ref} from "@vue/reactivity";
+import api from "@/utils/api";
+import {userStore} from "@/store/user";
+
 export default {
   setup() {
+
     const table = reactive({
       tableData: [
-        { realityName: 'ame', status: '1' },
-        { realityName: 'topson', status: '2' },
-        { realityName: 'jerax', status: '3' },
-        { realityName: 'ceb', status: '4' },
-        { realityName: 'notail', status: '5' },
+        {realityName: 'ame', status: '1'},
+        {realityName: 'topson', status: '2'},
+        {realityName: 'jerax', status: '3'},
+        {realityName: 'ceb', status: '4'},
+        {realityName: 'notail', status: '5'},
       ],
       detail(row) {
         // 信息查看详情操作
@@ -57,15 +61,27 @@ export default {
         // 修改操作
       },
     })
+
     return {
       table
     };
   },
+
+  mounted() {
+    const store = userStore()
+    console.log(store.userId)
+    console.log(store.userRole)
+    console.log(store.token)
+    // api.getUserReality().then((result) =>{
+    //   this.table.tableData = result.data
+    // })
+  }
 };
 </script>
 <style lang="scss" scoped>
 .box {
   box-shadow: 0 0 20px rgba(14, 14, 60, .08);
+
   &-header {
     text-align: start;
     border: 1px solid #ccc;
@@ -74,6 +90,7 @@ export default {
     padding: 10px 20px;
     font-size: 16px;
   }
+
   &-body {
     padding: 50px 100px;
     min-width: 400px;
