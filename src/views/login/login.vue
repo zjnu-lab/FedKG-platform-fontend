@@ -3,21 +3,17 @@
     <div class="box-title">登录</div>
     <el-form :model="form" ref="formRef2" label-width="60px">
       <el-form-item label="用户名" prop="user">
-        <el-input v-model="user.username"/>
+        <el-input v-model="user.username" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input v-model="user.password"/>
+        <el-input v-model="user.password" />
       </el-form-item>
       <!--      <el-form-item label="验证码">-->
       <!--        <el-input v-model="form.verify"></el-input>-->
       <!--      </el-form-item>-->
     </el-form>
     <div class="box-footer">
-      <el-button
-          class="btn"
-          type="info"
-          @click="handleNext"
-      >
+      <el-button class="btn" type="info" @click="handleNext">
         登录
       </el-button>
     </div>
@@ -27,10 +23,10 @@
   </div>
 </template>
 <script>
-import {reactive, ref, toRefs} from '@vue/reactivity'
-import {useRouter} from 'vue-router'
+import { reactive, ref, toRefs } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
 import api from '../../utils/api'
-import {userStore} from "../../store/user";
+import { userStore } from "../../store/user";
 
 export default {
   setup(props, ctx) {
@@ -46,6 +42,8 @@ export default {
     const store = userStore()
     const handleNext = () => {
       //  应该跟后端配合，保留一个加密的token登陆, 在发请求和路由跳转 或某些需要登陆后才能使用的功能 鉴定该token
+<<<<<<< Updated upstream
+=======
       // api.postUser(state.user.username, state.user.password).then((resonse) => {
       //   console.log(resonse)
       // })
@@ -55,9 +53,8 @@ export default {
           userRole: response.data.data.user_role,
           token: response.data.data.token
         })
-        // console.log(response)
-        // console.log(response.data.data.user_id)
       })
+>>>>>>> Stashed changes
       localStorage.setItem('token', Date.now())
       console.log('登陆')
       router.push({

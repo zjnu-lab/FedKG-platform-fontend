@@ -14,7 +14,6 @@
       <div v-for="item in showData.list" :key="item.key">
         {{ `${item.name}: ${item.song}` }}
       </div>
-      <div>{{ searchStr }}</div>
     </div>
   </div>
 </template>
