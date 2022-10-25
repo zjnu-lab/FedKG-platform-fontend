@@ -23,39 +23,29 @@
 </template>
 <script>
 import { reactive, ref } from "@vue/reactivity";
-
+import api from '../../utils/api'
 export default {
   setup() {
-    let a = get_information
     let table = reactive({
       tableData: [
-        // { realityName: 'ame', status: '1' },
-        // { realityName: 'topson', status: '2' },
-        // { realityName: 'jerax', status: '3' },
-        // { realityName: 'ceb', status: '4' },
-        // { realityName: 'notail', status: '5' },
+        { realityName: 'ame', status: '1' },
+        { realityName: 'topson', status: '2' },
+        { realityName: 'jerax', status: '3' },
+        { realityName: 'ceb', status: '4' },
+        { realityName: 'notail', status: '5' },
       ],
       pass(row) {
         alert(row.realityName)
       },
     })
-
-
-
     return {
       table
     };
   },
-  methods:{
-    get_information: function () {
-      // var this_ = this;
-      this.$api.getReality().then(function (result) {
-        return  result.data;
-      }).catch(function (error) {
-        console.log(error)
-      })
-    },
-
+  mounted(){
+    api.getPassReality().then((result) =>{
+      this.table.tableData = result.data
+    })
   }
 };
 </script>

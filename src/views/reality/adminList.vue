@@ -1,7 +1,7 @@
 <template>
   <div class="knowledgeMapShow">
     <div class="box">
-      <div class="box-header">待审核实体列表(管理员)</div>
+      <div class="box-header">待审核实体管理列表(管理员)</div>
       <div class="box-body">
         <div style="text-align: start; margin-bottom: 20px;">
           <el-button @click="handlePass"> 通过 </el-button>

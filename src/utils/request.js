@@ -1,19 +1,6 @@
 import axios from 'axios'
-import qs from 'qs'
 // axios 配置
-class api{
-   constructor() {
-        console.log("加载了api");
-    }
 
-    getReality() {
-        return axios.get("http://localhost:3000/posts")
-    }
-
-    testJSON() {
-        return axios.post("/api/echo", {data1: "111", data2: "222"})
-    }
-}
 
 // 权限判定可以在这里配置实现
 
@@ -44,4 +31,4 @@ service.interceptors.response.use(
   }
 )
 
-export default service;new api();
+export default service;

@@ -18,7 +18,7 @@
               <el-sub-menu index="2">
                 <template #title>实体添加</template>
                 <el-menu-item index="realityUserList">待审实体(用户)</el-menu-item>  
-                <el-menu-item index="realityAdminList">待审实体(管理员)</el-menu-item>  
+                <el-menu-item v-if="isAdministrator" index="realityAdminList">待审实体(管理员)</el-menu-item>
                 <el-menu-item index="realityPassList">已通过实体</el-menu-item>  
                 <el-menu-item index="realityWaitSyncList">等待同步实体</el-menu-item>  
                 <el-menu-item index="realityModify">修改实体</el-menu-item>
@@ -46,8 +46,9 @@ import logoimg from "@/assets/zslogo.jpg";
 export default {
   name: "App",
   setup(props, ctx) {
+    let isAdministrator = true
     return {
-      logoimg,
+      logoimg,isAdministrator
     }
   },
 };

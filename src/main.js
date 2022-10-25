@@ -4,10 +4,13 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import './assets/css/global.scss'
-import api from './utils/request'
+import { createPinia } from "pinia"
+
 
 const app = createApp(App)
-app.config.globalProperties.$api = api
+const pinia = createPinia()
+
 app.use(router)
 app.use(ElementPlus)
+app.use(pinia)
 app.mount('#app')
