@@ -1,7 +1,6 @@
 import axios from 'axios'
-
-
 // axios 配置
+
 
 // 权限判定可以在这里配置实现
 
@@ -32,4 +31,4 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+export default service;

@@ -23,9 +23,10 @@
 </template>
 <script>
 import { reactive, ref } from "@vue/reactivity";
+import api from '../../utils/api'
 export default {
   setup() {
-    const table = reactive({
+    let table = reactive({
       tableData: [
         { realityName: 'ame', status: '1' },
         { realityName: 'topson', status: '2' },
@@ -34,13 +35,18 @@ export default {
         { realityName: 'notail', status: '5' },
       ],
       pass(row) {
-        // 信息查看详情操作
+        alert(row.realityName)
       },
     })
     return {
       table
     };
   },
+  mounted(){
+    api.getPassReality().then((result) =>{
+      this.table.tableData = result.data
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>

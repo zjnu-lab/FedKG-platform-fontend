@@ -100,11 +100,11 @@ function validToken() {
 }
 
 // 鉴权思路 ，不用鉴权可以把这段注释掉
-router.beforeEach((to, from) => {
-    if (!validToken() && to.name !== "login") {
-        alert("请先登录");
-        return { name: "login" };
-    }
-});
+// router.beforeEach((to, from) => {
+//     if (!validToken() && to.name !== "login") {
+//         alert("请先登录");
+//         return { name: "login" };
+//     }
+// });
 
 export default router;
