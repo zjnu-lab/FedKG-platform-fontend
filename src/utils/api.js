@@ -4,7 +4,7 @@ class api {
     constructor() {
         this.hostUrl = 'http://192.168.1.114'
     }
-
+    //
     //登录验证
     postUser(username, password){
         return axios.post("http://192.168.1.114/login", {
