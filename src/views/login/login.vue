@@ -42,6 +42,19 @@ export default {
     })
     const handleNext = () => {
       //  应该跟后端配合，保留一个加密的token登陆, 在发请求和路由跳转 或某些需要登陆后才能使用的功能 鉴定该token
+<<<<<<< Updated upstream
+=======
+      // api.postUser(state.user.username, state.user.password).then((resonse) => {
+      //   console.log(resonse)
+      // })
+      api.postUser(state.user.username,state.user.password).then(response => {
+        store.$patch({
+          userId: response.data.data.user_id,
+          userRole: response.data.data.user_role,
+          token: response.data.data.token
+        })
+      })
+>>>>>>> Stashed changes
       localStorage.setItem('token', Date.now())
       console.log('登陆')
       router.push({

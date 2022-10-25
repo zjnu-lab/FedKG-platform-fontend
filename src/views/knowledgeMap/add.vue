@@ -7,10 +7,7 @@
           <el-form-item label="实体名称">
             <el-input v-model="form.realityName"></el-input>
           </el-form-item>
-          <el-form-item label="实体图片">
-            <!-- 导入 这里要配置 参考文档
-              https://element-plus.gitee.io/zh-CN/component/upload.html#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95
-             -->
+          <!-- <el-form-item label="实体图片">
             <el-upload>
               <el-button>选择文件</el-button>
             </el-upload>
@@ -19,13 +16,22 @@
             <el-upload>
               <el-button>选择文件</el-button>
             </el-upload>
+<<<<<<< Updated upstream
           </el-form-item>
           <el-form-item label="实体文件描述">
             <el-button @click="subtract">-</el-button>
             <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
             <el-button @click="add">+</el-button>
+=======
+          </el-form-item> -->
+          <el-form-item label="实体描述">
+            <!-- <el-button @click="subtract">-</el-button>
+            <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
+            <el-button @click="add">+</el-button> -->
+            <el-input placeholder="请输入描述" v-model="form.desc"></el-input>
+>>>>>>> Stashed changes
           </el-form-item>
-          <el-form-item style="margin-top: 50px;">
+          <el-form-item style="margin-top: 50px">
             <el-button type="primary" @click="handleSubmit">提交</el-button>
           </el-form-item>
         </el-form>
@@ -35,23 +41,47 @@
 </template>
 <script>
 import { reactive, ref } from "@vue/reactivity";
+import api from "../../utils/api";
+import { ElMessage } from "element-plus";
 export default {
   setup() {
+<<<<<<< Updated upstream
     const formref = ref(null)
+=======
+    const des = ref("");
+    const formref = ref(null);
+>>>>>>> Stashed changes
     const form = reactive({
-      realityName: '',
+      realityName: "",
       realityFileDesc: 0,
+      desc: "",
     });
     const subtract = () => {
       form.realityFileDesc--;
-    }
+    };
     const add = () => {
       form.realityFileDesc++;
-    }
+    };
     const handleSubmit = () => {
       // 提交逻辑写在这里
-      console.log(form)
-    }
+      let data = {
+        newentity_name: form.realityName,
+        newentity_attribute: form.desc,
+      };
+      api.postReality(data).then((res) => {
+        if (res.data.code === 200) {
+          ElMessage({
+            message: "success",
+            type: "success",
+          });
+        } else {
+          ElMessage({
+            message: "fail.",
+            type: "error",
+          });
+        }
+      });
+    };
     return {
       form,
       formref,
@@ -64,7 +94,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box {
-  box-shadow: 0 0 20px rgba(14, 14, 60, .08);
+  box-shadow: 0 0 20px rgba(14, 14, 60, 0.08);
   &-header {
     text-align: start;
     border: 1px solid #ccc;
