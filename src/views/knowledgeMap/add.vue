@@ -16,20 +16,12 @@
             <el-upload>
               <el-button>选择文件</el-button>
             </el-upload>
-<<<<<<< Updated upstream
-          </el-form-item>
-          <el-form-item label="实体描述">
-            <!-- <el-button @click="subtract">-</el-button>
-            <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
-            <el-button @click="add">+</el-button>
-=======
           </el-form-item> -->
           <el-form-item label="实体描述">
             <!-- <el-button @click="subtract">-</el-button>
             <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
             <el-button @click="add">+</el-button> -->
             <el-input placeholder="请输入描述" v-model="form.desc"></el-input>
-            >>>>>>> Stashed changes
           </el-form-item>
           <el-form-item style="margin-top: 50px">
             <el-button type="primary" @click="handleSubmit">提交</el-button>
@@ -45,12 +37,8 @@ import api from "../../utils/api";
 import { ElMessage } from "element-plus";
 export default {
   setup() {
-<<<<<<< Updated upstream
-    const formref = ref(null)
-=======
     const des = ref("");
     const formref = ref(null);
->>>>>>> Stashed changes
     const form = reactive({
       realityName: "",
       realityFileDesc: 0,

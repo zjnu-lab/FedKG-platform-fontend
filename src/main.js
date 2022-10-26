@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import './assets/css/global.scss'
 import { createPinia } from "pinia"
-
+import "./utils/api";
 
 const app = createApp(App)
 const pinia = createPinia()
