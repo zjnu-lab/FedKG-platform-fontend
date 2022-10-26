@@ -26,11 +26,8 @@ export default {
   setup() {
     const table = reactive({
       tableData: [
-        { time: '2020-10-18', desc: 'rng 0-2 不敌og', action: '+0 积分' },
-        { time: '2020-10-18', desc: 'rng 0-2 不敌og', action: '+0 积分' },
-        { time: '2020-10-18', desc: 'rng 0-2 不敌og', action: '+0 积分' },
-        { time: '2020-10-18', desc: 'rng 0-2 不敌og', action: '+0 积分' },
-        { time: '2020-10-18', desc: 'rng 0-2 不敌og', action: '+0 积分' },
+        { time: '2020-10-18', desc: '事件1', action: '+0 积分' },
+        
       ],
       pass(row) {
         // 信息查看详情操作
