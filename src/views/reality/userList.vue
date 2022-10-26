@@ -6,12 +6,12 @@
         <el-table :data="table.tableData">
           <el-table-column label="实体名称">
             <template v-slot="{row}">
-              {{ row.realityName }}
+              {{ row.newent_name }}
             </template>
           </el-table-column>
           <el-table-column label="审核状态">
             <template v-slot="{row}">
-              {{ row.status }}
+              {{ row.newent_status }}
             </template>
           </el-table-column>
           <el-table-column>
@@ -42,39 +42,32 @@ import {userStore} from "@/store/user";
 
 export default {
   setup() {
-
+    const user = userStore()
     const table = reactive({
-      tableData: [
-        {realityName: 'ame', status: '1'},
-        {realityName: 'topson', status: '2'},
-        {realityName: 'jerax', status: '3'},
-        {realityName: 'ceb', status: '4'},
-        {realityName: 'notail', status: '5'},
-      ],
+      tableData: [],
       detail(row) {
-        // 信息查看详情操作
+        api.getRealityDetail(user.token, row.newent_id).then((response) => {
+          alert("实体名称：" + response.data.data.entity_info.newentity_name)
+        })
       },
       reback(row) {
-        // 撤销操作
+        api.deleteReality(user.token, row.newent_id)
+        location.reload()
       },
-      modify(row) {
-        // 修改操作
-      },
+      // modify(row) {
+      //   // 修改操作
+      // },
     })
 
     return {
-      table
+      table, user
     };
   },
 
   mounted() {
-    const store = userStore()
-    console.log(store.userId)
-    console.log(store.userRole)
-    console.log(store.token)
-    // api.getUserReality().then((result) =>{
-    //   this.table.tableData = result.data
-    // })
+    api.getReality(localStorage.getItem('token'), "0").then((result) => {
+      this.table.tableData = result.data.data.entities_list
+    })
   }
 };
 </script>

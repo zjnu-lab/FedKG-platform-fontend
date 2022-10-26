@@ -6,7 +6,7 @@
         <el-table :data="table.tableData">
           <el-table-column label="实体名称">
             <template v-slot="{row}">
-              {{ row.realityName }}
+              {{ row.newent_name }}
             </template>
           </el-table-column>
           <el-table-column width="100px">
@@ -16,36 +16,42 @@
           </el-table-column>
         </el-table>
         <!-- 分页 -->
-        <el-pagination layout="prev, pager, next" :total="table.tableData.length" />
+        <el-pagination layout="prev, pager, next" :total="table.tableData.length"/>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { reactive, ref } from "@vue/reactivity";
+import {reactive, ref} from "@vue/reactivity";
+import {userStore} from "@/store/user";
+import api from '../../utils/api'
+
 export default {
   setup() {
+    const user = userStore()
     const table = reactive({
-      tableData: [
-        { realityName: 'ame', status: '1' },
-        { realityName: 'topson', status: '2' },
-        { realityName: 'jerax', status: '3' },
-        { realityName: 'ceb', status: '4' },
-        { realityName: 'notail', status: '5' },
-      ],
+      tableData: [],
       detail(row) {
-        // 信息查看详情操作
+        api.getRealityDetail(user.token, row.newent_id).then((response) => {
+          alert("实体名称：" + response.data.data.entity_info.newentity_name)
+        })
       },
     })
     return {
-      table
+      table, user
     };
   },
+  mounted() {
+    api.getReality(this.user.token, "1").then((result) => {
+      this.table.tableData = result.data.data.entities_list
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>
 .box {
   box-shadow: 0 0 20px rgba(14, 14, 60, .08);
+
   &-header {
     text-align: start;
     border: 1px solid #ccc;
@@ -54,6 +60,7 @@ export default {
     padding: 10px 20px;
     font-size: 16px;
   }
+
   &-body {
     padding: 50px 100px;
     min-width: 400px;

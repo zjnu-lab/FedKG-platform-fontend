@@ -21,7 +21,7 @@
                 <el-menu-item v-if="isAdministrator" index="realityAdminList">待审实体(管理员)</el-menu-item>
                 <el-menu-item index="realityPassList">已通过实体</el-menu-item>  
                 <el-menu-item index="realityWaitSyncList">等待同步实体</el-menu-item>  
-                <el-menu-item index="realityModify">修改实体</el-menu-item>
+<!--                <el-menu-item index="realityModify">修改实体</el-menu-item>-->
               </el-sub-menu>
               <el-sub-menu index="3">
                 <template #title>用户</template>
