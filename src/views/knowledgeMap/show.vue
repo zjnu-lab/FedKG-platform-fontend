@@ -87,7 +87,6 @@ export default {
             message: "\u83b7\u53d6\u6210\u529f",
           };
           let results =  res.data.entity_info.newentity_attribute
-          console.log(results)
           knowledgeMap.images = results.images
           knowledgeMap.videos = results.vedio
           reality.infos = results.infomation
