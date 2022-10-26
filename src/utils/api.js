@@ -9,7 +9,7 @@ class api {
     }
 
     //获取实体
-    postReality(token, status) {
+    getReality(token, status) {
         return axios.get("http://192.168.1.114/user/newents", {
             headers: {
                 'Authorization': "Bearer " + token
@@ -31,7 +31,7 @@ class api {
     }
 
     //查看实体详细信息
-    getRealityIfor(token, realityId) {
+    getRealityDetail(token, realityId) {
         return axios.get("http://192.168.1.114/user/newent", {
             headers: {
                 'Authorization': "Bearer " + token

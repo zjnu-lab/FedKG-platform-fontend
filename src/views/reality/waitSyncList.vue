@@ -32,7 +32,7 @@ export default {
     const table = reactive({
       tableData: [],
       detail(row) {
-        api.getRealityIfor(user.token, row.newent_id).then((response) => {
+        api.getRealityDetail(user.token, row.newent_id).then((response) => {
           alert("实体名称：" + response.data.data.entity_info.newentity_name)
         })
       },
@@ -42,7 +42,7 @@ export default {
     };
   },
   mounted() {
-    api.postReality(this.user.token, "1").then((result) => {
+    api.getReality(this.user.token, "1").then((result) => {
       this.table.tableData = result.data.data.entities_list
     })
   }

@@ -32,7 +32,7 @@ export default {
     let table = reactive({
       tableData: [],
       pass(row) {
-        api.getRealityIfor(user.token, row.newent_id).then((response) => {
+        api.getRealityDetail(user.token, row.newent_id).then((response) => {
           alert("实体名称："+response.data.data.entity_info.newentity_name)
         })
       },
@@ -43,12 +43,12 @@ export default {
   },
   mounted() {
     if (this.user.userRole === 2) {
-      api.postReality(this.user.token, "3").then((result) => {
+      api.getReality(this.user.token, "3").then((result) => {
         console.log(result.data.data.entities_list)
         this.table.tableData = result.data.data.entities_list
       })
     } else {
-      api.postReality(this.user.token, "0").then((result) => {
+      api.getReality(this.user.token, "0").then((result) => {
         this.table.tableData = result.data.data.entities_list
       })
     }
