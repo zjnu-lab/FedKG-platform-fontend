@@ -43,12 +43,12 @@ export default {
   },
   mounted() {
     if (this.user.userRole === 2) {
-      api.getReality(this.user.token, "3").then((result) => {
+      api.getReality(localStorage.getItem('token'), "3").then((result) => {
         console.log(result.data.data.entities_list)
         this.table.tableData = result.data.data.entities_list
       })
     } else {
-      api.getReality(this.user.token, "0").then((result) => {
+      api.getReality(localStorage.getItem('token'), "0").then((result) => {
         this.table.tableData = result.data.data.entities_list
       })
     }

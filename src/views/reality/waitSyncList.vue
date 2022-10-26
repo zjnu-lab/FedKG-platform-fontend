@@ -42,7 +42,7 @@ export default {
     };
   },
   mounted() {
-    api.getReality(this.user.token, "1").then((result) => {
+    api.getReality(localStorage.getItem('token'), "1").then((result) => {
       this.table.tableData = result.data.data.entities_list
     })
   }

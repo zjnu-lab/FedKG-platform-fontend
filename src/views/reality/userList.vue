@@ -51,8 +51,15 @@ export default {
         })
       },
       reback(row) {
-        api.deleteReality(user.token, row.newent_id)
-        location.reload()
+        api.deleteReality(user.token, row.newent_id).then((response) => {
+          alert(response.data.message)
+          location.reload()
+        }).catch(function (error) {
+              alert(error.response.data.message)
+              location.reload()
+            }
+        )
+
       },
       // modify(row) {
       //   // 修改操作
