@@ -12,6 +12,7 @@
         <el-form-item style="margin-top: 50px">
             <!-- <el-button type="primary" @click="handleSubmit">{{knowledgeMap.entitiyName}}</el-button> -->
             <el-button type="primary" @click="showAttribute" >{{knowledgeMap.entitiyName}}</el-button>
+            <!-- <el-button type="primary" @click="showAttribute" >{{this.$router}}</el-button> -->
         </el-form-item>
       </div>
     </div>
@@ -27,13 +28,17 @@
 </template>
 <script>
 import { reactive,ref } from "@vue/reactivity";
+import { useRoute } from 'vue-router'
 import { onMounted } from "@vue/runtime-core";
 import api from "../../utils/api";
 export default {
   setup() {
+    const route = useRoute()
+    console.log(route.query.entity_Name)
     const knowledgeMap = reactive({
       data: "局部知识图展示",
-      entitiyName:"实体",
+      // entitiyName:localStorage.getItem("entitiy_name"),
+      entitiyName:route.query.entity_Name,
       images: [],
       videos: [],
     });
@@ -103,6 +108,7 @@ export default {
     });
     
     return {
+      route,
       knowledgeMap,
       reality,
       showOrNot,

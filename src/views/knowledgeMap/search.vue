@@ -35,12 +35,16 @@ export default {
       // console.log(handleSearch);
       api.searchExistReality(localStorage.getItem('token'),state.form.entityName).then((response) => {
           router.push({
-            name: 'knowledgeMapShow'
+            name: 'knowledgeMapShow',
+            query:{
+              entity_Name:response.data.data.node_attr.name
+            }
           }),
-          console.log(response)
+          console.log(typeof(response.data.data.node_attr.name));
+          localStorage.setItem("entitiy_name",response.data.data.node_attr.name)
           
         }).catch(function (error) {
-          alert("something go wrong" + error.response.data.message)
+          alert("something go wrong " + error.response.data.message)
           // alert("something go wrong")
         })
     };
