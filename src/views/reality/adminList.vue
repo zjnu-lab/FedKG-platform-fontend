@@ -14,12 +14,12 @@
           <el-table-column type="selection"></el-table-column>
           <el-table-column label="实体名称">
             <template v-slot="{ row }">
-              {{ row.realityName }}
+              {{ row.newent_name }}
             </template>
           </el-table-column>
           <el-table-column label="审核状态">
             <template v-slot="{ row }">
-              {{ row.status }}
+              {{ row.newent_status }}
             </template>
           </el-table-column>
           <el-table-column width="100px">
@@ -51,13 +51,18 @@
 </template>
 <script>
 import {reactive, ref} from "@vue/reactivity";
+import api from "@/utils/api";
+import {userStore} from "@/store/user";
 
 export default {
   setup() {
+    const user = userStore()
     const table = reactive({
       tableData: [],
       pass(row) {
-        // 信息查看详情操作
+        api.getRealityDetail(user.token, row.newent_id).then((response) => {
+          alert("实体名称："+response.data.data.entity_info.newentity_name)
+        })
       },
       unpass(row) {
         // 撤销操作
@@ -86,6 +91,11 @@ export default {
       handleUnpass,
     };
   },
+  mounted() {
+    api.getReality(localStorage.getItem('token')).then((result) => {
+      this.table.tableData = result.data.data.entities_list
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>

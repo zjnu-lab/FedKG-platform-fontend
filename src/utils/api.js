@@ -51,7 +51,7 @@ class api {
     }
 
     //获取实体
-    getReality(token, status) {
+    getReality(token, status=null) {
         return axios.get("http://192.168.1.114/user/newents", {
             headers: {
                 Authorization: "Bearer " + token,
