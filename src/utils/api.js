@@ -1,48 +1,51 @@
 import axios from "axios";
-import {
-    ElMessage
-} from "element-plus";
+import { ElMessage } from "element-plus";
 
 axios.defaults.withCredentials = true; // 证书
 axios.defaults.crossDomain = true; // 跨域
 axios.defaults.timeout = 10000; // 请求10s超时
 
-axios.interceptors.request.use((req) => {
-    /**
-     * 请求拦截器
-     * 有token 为 Bearer xxxxxxx
-     * 无token 为 Bearer null
-     */
-    let token = `Bearer ${localStorage.getItem('token')}`;
-    req.headers['Authorization'] = token
-    return req;
-}, (err) => {
-    return Promise.reject(err);
-})
-axios.interceptors.response.use(res => {
-    /**
-     * 响应拦截器
-     * 响应状态码为401 跳转登陆
-     */
-    if (res.data.code === 401) {
-        ElMessage({
-            message: "请登录",
-            type: "error",
-        });
-        window.location.href = '/#/login'
+axios.interceptors.request.use(
+    (req) => {
+        /**
+         * 请求拦截器
+         * 有token 为 Bearer xxxxxxx
+         * 无token 为 Bearer null
+         */
+        let token = `Bearer ${localStorage.getItem("token")}`;
+        req.headers["Authorization"] = token;
+        return req;
+    },
+    (err) => {
+        return Promise.reject(err);
     }
-    return res;
-}, err => {
-    return Promise.reject(err);
-})
-
+);
+axios.interceptors.response.use(
+    (res) => {
+        /**
+         * 响应拦截器
+         * 响应状态码为401 跳转登陆
+         */
+        if (res.data.code === 401) {
+            ElMessage({
+                message: "请登录",
+                type: "error",
+            });
+            window.location.href = "/#/login";
+        }
+        return res;
+    },
+    (err) => {
+        return Promise.reject(err);
+    }
+);
 
 class api {
     constructor() {
-        this.hostUrl = "http://192.168.1.114";
-    }
-    //
-    //登录验证
+            this.hostUrl = "http://192.168.1.114";
+        }
+        //
+        //登录验证
     postUser(username, password) {
         return axios.post("http://192.168.1.114/login", {
             username: username,
@@ -51,7 +54,7 @@ class api {
     }
 
     //获取实体
-    getReality(token, status=null) {
+    getReality(token, status = null) {
         return axios.get("http://192.168.1.114/user/newents", {
             headers: {
                 Authorization: "Bearer " + token,
@@ -107,8 +110,8 @@ class api {
                 name: "",
             }, {
                 headers: {
-                    Authorization: "Bearer " + token
-                }
+                    Authorization: "Bearer " + token,
+                },
             }
         );
     }
@@ -117,6 +120,27 @@ class api {
     postReality(data) {
         return axios.post(`${this.hostUrl}/user/newent`, data);
     }
-}
 
+    // searchExistReality(token, nodeName) {
+    //     return axios.get(
+    //         "http://192.168.1.114/node", {
+    //             node_name: nodeName,
+    //         }, {
+    //             headers: {
+    //                 Authorization: "Bearer " + token,
+    //             },
+    //         }
+    //     );
+    // }
+    searchExistReality(token, nodeName) {
+        return axios.get(`${this.hostUrl}/node`, {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+            params: {
+                node_name: nodeName,
+            },
+        });
+    }
+}
 export default new api();

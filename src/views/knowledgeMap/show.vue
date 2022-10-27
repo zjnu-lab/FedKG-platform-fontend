@@ -3,18 +3,22 @@
     <div class="box">
       <div class="box-header">知识图谱</div>
       <div class="box-body flex-center">
-        <div v-for="item in knowledgeMap.images" :key="item.image">
+        <!-- <div v-for="item in knowledgeMap.images" :key="item.image">
           <img src="item.image">
         </div>
         <div v-for="item in knowledgeMap.videos" :key="item.image">
           <video src="item.vedio"></video>
-        </div>
+        </div> -->
+        <el-form-item style="margin-top: 50px">
+            <!-- <el-button type="primary" @click="handleSubmit">{{knowledgeMap.entitiyName}}</el-button> -->
+            <el-button type="primary" @click="showAttribute" >{{knowledgeMap.entitiyName}}</el-button>
+        </el-form-item>
       </div>
     </div>
     <div class="box" style="margin-top: 100px">
       <div class="box-header">实体属性</div>
       <div class="box-body flex-center">
-        <div v-for="item in reality.infos" :key="item.info">
+        <div v-for="item in reality.infos" :key="item.info"  v-show="showOrNot">
           {{ item.info }}
         </div>
       </div>
@@ -22,13 +26,14 @@
   </div>
 </template>
 <script>
-import { reactive, ref } from "@vue/reactivity";
+import { reactive,ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import api from "../../utils/api";
 export default {
   setup() {
     const knowledgeMap = reactive({
       data: "局部知识图展示",
+      entitiyName:"实体",
       images: [],
       videos: [],
     });
@@ -36,6 +41,10 @@ export default {
       data: "实体关系信息/展示",
       infos: [] 
     });
+    let showOrNot = ref(false);
+    const  showAttribute = () =>{
+      showOrNot.value = true;
+    }
     onMounted(() => {
       api.getRealityDetail(9)
         .then((res) => {console.log(res)})
@@ -87,8 +96,8 @@ export default {
             message: "\u83b7\u53d6\u6210\u529f",
           };
           let results =  res.data.entity_info.newentity_attribute
-          knowledgeMap.images = results.images
-          knowledgeMap.videos = results.vedio
+          // knowledgeMap.images = results.images
+          // knowledgeMap.videos = results.vedio
           reality.infos = results.infomation
         });
     });
@@ -96,6 +105,8 @@ export default {
     return {
       knowledgeMap,
       reality,
+      showOrNot,
+      showAttribute
     };
   },
 };

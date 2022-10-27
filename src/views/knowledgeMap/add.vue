@@ -7,7 +7,7 @@
           <el-form-item label="实体名称">
             <el-input v-model="form.realityName"></el-input>
           </el-form-item>
-          <!-- <el-form-item label="实体图片">
+          <el-form-item label="实体图片">
             <el-upload>
               <el-button>选择文件</el-button>
             </el-upload>
@@ -16,7 +16,7 @@
             <el-upload>
               <el-button>选择文件</el-button>
             </el-upload>
-          </el-form-item> -->
+          </el-form-item>
           <el-form-item label="实体描述">
             <!-- <el-button @click="subtract">-</el-button>
             <span style="padding: 0 20px;">{{ form.realityFileDesc }}</span>
@@ -69,6 +69,7 @@ export default {
           });
         }
       });
+      alert("提交成功，请联系工作人员审核")
     };
     return {
       des,

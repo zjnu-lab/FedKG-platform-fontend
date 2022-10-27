@@ -5,26 +5,52 @@
       <el-input
         placeholder="请输入关键字"
         size="large"
-        v-model="searchStr"
+        v-model="state.form.entityName"
         style="margin-right: 50px; width: 400px"
       ></el-input>
       <el-button size="large" @click="handleSearch">搜索</el-button>
     </div>
-    <div class="content-box">
+    <!-- <div class="content-box">
       <div v-for="item in showData.list" :key="item.key">
         {{ `${item.name}: ${item.song}` }}
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
 import { reactive, ref } from "@vue/reactivity";
+import api from "@/utils/api";
+import {useRouter} from 'vue-router'
 export default {
   setup() {
     const searchStr = ref("");
+    const router = useRouter()
+    const state = reactive({
+      formRef2: ref(null),
+      form: {
+        entityName: "",
+      },
+    })
     const handleSearch = () => {
-      console.log(handleSearch);
+      // console.log(handleSearch);
+      api.searchExistReality(localStorage.getItem('token'),state.form.entityName).then((response) => {
+          router.push({
+            name: 'knowledgeMapShow'
+          }),
+          console.log(response)
+          
+        }).catch(function (error) {
+          alert(error.response.data.message)
+          // alert("something go wrong")
+        })
     };
+    // api.userRegister(state.form.username, state.form.password, state.form.name, state.form.unit, state.form.email, state.form.phone).then((response) => {
+    //     router.push({
+    //       name: 'login'
+    //     })
+    //   }).catch(function (error) {
+    //     alert(error.response.data.message)
+    //   })
     const showData = reactive({
       list: [
         { name: "数学", song: "三角函数", key: 1 },
@@ -34,6 +60,7 @@ export default {
       ],
     });
     return {
+      state,
       searchStr,
       handleSearch,
       showData,
