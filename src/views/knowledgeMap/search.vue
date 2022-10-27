@@ -40,7 +40,7 @@ export default {
           console.log(response)
           
         }).catch(function (error) {
-          alert(error.response.data.message)
+          alert("something go wrong" + error.response.data.message)
           // alert("something go wrong")
         })
     };
