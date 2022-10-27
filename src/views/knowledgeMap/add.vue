@@ -69,7 +69,8 @@ export default {
           });
         }
       });
-      alert("提交成功，请联系工作人员审核")
+      alert("提交成功，请联系工作人员审核");
+      location.reload();
     };
     return {
       des,
