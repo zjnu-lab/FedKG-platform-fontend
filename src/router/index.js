@@ -84,11 +84,23 @@ const router = createRouter({
                 import ("@/views/reality/modify.vue"),
         },
         {
-            path: "/integral",
-            name: "integral",
+            path: "/userInfo",
+            name: "userInfo",
             component: () =>
-                import ("@/views/integral/integral.vue"),
+                import ("@/views/user/userInfo.vue"),
         },
+        {
+            path: "/agreement",
+            name: "agreement",
+            component: () =>
+                import ("@/views/user/agreement.vue"),
+        },
+        {
+            path: "/compactDownload",
+            name: "compactDownload",
+            component: () =>
+                import ("@/views/user/compactDownload.vue"),
+        }
     ],
 });
 

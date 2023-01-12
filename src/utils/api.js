@@ -47,7 +47,7 @@ class api {
         //
         //登录验证
     postUser(username, password) {
-        return axios.post("http://192.168.1.114/login", {
+        return axios.post(`${this.hostUrl}/login`, {
             username: username,
             password: password,
         });
@@ -55,7 +55,7 @@ class api {
 
     //获取实体
     getReality(token, status = null) {
-        return axios.get("http://192.168.1.114/user/newents", {
+        return axios.get(`${this.hostUrl}/user/newents`, {
             headers: {
                 Authorization: "Bearer " + token,
             },
@@ -67,7 +67,7 @@ class api {
 
     //撤销删除实体
     deleteReality(token, realityId) {
-        return axios.delete("http://192.168.1.114/user/newent", {
+        return axios.delete(`${this.hostUrl}/user/newent`, {
             headers: {
                 Authorization: "Bearer " + token,
             },
@@ -91,7 +91,7 @@ class api {
 
     //注册
     userRegister(username, password, name, unit, email, phone = null) {
-        return axios.post("http://192.168.1.114/register", {
+        return axios.post(`${this.hostUrl}/register`, {
             username: username,
             password: password,
             name: name,
@@ -103,7 +103,7 @@ class api {
     //修改密码
     changePassword(oldPassword, newPassword, token) {
         return axios.post(
-            "http://192.168.1.114/userinfo", {
+            `${this.hostUrl}/userinfo`, {
                 password: newPassword,
                 old_password: oldPassword,
                 phone: "",
@@ -141,6 +141,21 @@ class api {
                 node_name: nodeName,
             },
         });
+    }
+
+    getUserInfor(token, page){
+        return axios.get(`${this.hostUrl}/userinfo`, {
+            header: {
+                Authorization: "Bearer " + token
+            },
+            params: {
+                page:page
+            }
+        })
+    }
+
+    getPDF(){
+        return axios.get(`${this.hostUrl}/protocol`)
     }
 }
 export default new api();
